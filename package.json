@@ -1,0 +1,16 @@
+{
+  "name": "notebook-api",
+  "version": "1.0.0",
+  "main": "app.js",
+  "repository": "https://github.com/ralenezi/notebook-api.git",
+  "author": "kalmansour <khaledalmansour24@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0"
+  }
+}
