@@ -1,11 +1,15 @@
 const express = require("express");
 const cors = require("cors");
 const db = require("./db/models");
-
+const CRUDRouter = require("./routes/CRUDRouter");
 const app = express();
 
-//Middleware
 app.use(cors());
+app.use("/notes", new CRUDRouter(new CRUDController(Notes, "notes")));
+app.use(
+  "/notebooks",
+  new CRUDRouter(new CRUDController(Notebooks, "notebooks"))
+);
 
 //Routes
 //routes
