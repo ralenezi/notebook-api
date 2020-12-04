@@ -1,9 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define("Note", {
+  return sequelize.define('Note', {
     description: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  });
-  return Note;
-};
+    content: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+  })
+  return Note
+}

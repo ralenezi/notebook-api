@@ -3,9 +3,10 @@
     "username": "khaledalmansour",
     "password": null,
     "database": "notebook_db",
-    "host": "tcp://0.tcp.ngrok.io",
-    "port": 19164,
-    "dialect": "postgres"
+    "host": "0.tcp.ngrok.io",
+    "port": 18935,
+    "dialect": "postgres",
+    "logging": false
   },
   "test": {
     "username": "root",
