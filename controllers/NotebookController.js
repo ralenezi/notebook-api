@@ -1,20 +1,76 @@
-const { Notebook } = require('../db/models')
+const { Notebook, Note } = require('../db/models')
 //list
 exports.notebookList = async (req, res) => {
   try {
-    const notebook = await Notebook.findAll()
-    console.log('notebook', notebook)
+    const notebook = await Notebook.findAll({
+      attributes: ['id', 'name'],
+      include: [
+        {
+          model: Note,
+          as: 'notes',
+          attributes: ['id', 'title'],
+        },
+      ],
+    })
     res.json(notebook)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
 }
+//note detail
+exports.noteDetail = async (req, res) => {
+  const { notebookId } = req.params
+  try {
+    // const foundNote = await Notebook.findByPk(notebookId)
+    const foundNote = await Note.findAll({
+      where: {
+        notebookId: notebookId,
+      },
+      include: [
+        {
+          model: Note,
+          as: 'notes',
+          attributes: ['id', 'title'],
+        },
+      ],
+    })
+    if (foundNote) {
+      // await foundNote.update(req.body)
+      res.json(foundNote)
+    } else res.status(404).json({ message: 'Notebook not found!' })
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+  // try {
+  //   const notes = await Note.findAll({
+  //     attributes: { exclude: ['createdAt', 'updatedAt', 'NotebookId'] },
+  //     include: {
+  //       model: Notebook,
+  //       as: 'notebook',
+  //       attributes: ['name'],
+  //     },
+  //   })
+  //   res.json(notes)
+  // } catch (error) {
+  //   res.status(500).json({ message: error.message })
+  // }
+}
 
 //create
-exports.notebookCteate = async (req, res) => {
+exports.notebookCreate = async (req, res) => {
   try {
     const newNotebook = await Notebook.create(req.body)
     res.status(201).json(newNotebook)
+  } catch (error) {
+    res.status(500).json({ message: error.message })
+  }
+}
+//create note
+exports.noteCreate = async (req, res) => {
+  try {
+    req.body.notebookId = req.params.notebookId
+    const newNote = await Note.create(req.body)
+    res.status(201).json(newNote)
   } catch (error) {
     res.status(500).json({ message: error.message })
   }

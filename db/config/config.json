@@ -4,7 +4,7 @@
     "password": null,
     "database": "notebook_db",
     "host": "0.tcp.ngrok.io",
-    "port": 18935,
+    "port": 11271,
     "dialect": "postgres",
     "logging": false
   },

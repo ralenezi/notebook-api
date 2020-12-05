@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define('Note', {
-    description: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },

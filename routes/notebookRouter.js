@@ -2,16 +2,24 @@ const express = require('express')
 const router = express.Router()
 const {
   notebookList,
-  notebookCteate,
+  notebookCreate,
   notebookUpdate,
   notebookDelete,
+  noteCreate,
+  noteDetail,
 } = require('../controllers/NotebookController')
 
 //list
 router.get('/notebooks', notebookList)
 
+//note detail
+router.get('/notebooks/:notebookId', noteDetail)
+
 //create
-router.post('/notebooks', notebookCteate)
+router.post('/notebooks', notebookCreate)
+
+//note create
+router.post('/notebooks/:notebookId/notes', noteCreate)
 
 //update
 router.put('/notebooks/:notebookId', notebookUpdate)
