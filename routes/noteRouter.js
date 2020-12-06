@@ -4,7 +4,11 @@ const {
   noteList,
   noteUpdate,
   noteDelete,
+  tagCreate,
 } = require('../controllers/NoteController')
+
+//tag create router
+router.post('/notes/:noteId/tags', tagCreate)
 
 //list
 router.get('/notes', noteList)
@@ -14,4 +18,5 @@ router.put('/notes/:noteId', noteUpdate)
 
 //delete
 router.delete('/notes/:noteId', noteDelete)
+
 module.exports = router
