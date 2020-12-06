@@ -21,39 +21,17 @@ exports.notebookList = async (req, res) => {
 exports.noteDetail = async (req, res) => {
   const { notebookId } = req.params
   try {
-    // const foundNote = await Notebook.findByPk(notebookId)
     const foundNote = await Note.findAll({
       where: {
         notebookId: notebookId,
       },
-      include: [
-        {
-          model: Note,
-          as: 'notes',
-          attributes: ['id', 'title'],
-        },
-      ],
     })
     if (foundNote) {
-      // await foundNote.update(req.body)
       res.json(foundNote)
     } else res.status(404).json({ message: 'Notebook not found!' })
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
-  // try {
-  //   const notes = await Note.findAll({
-  //     attributes: { exclude: ['createdAt', 'updatedAt', 'NotebookId'] },
-  //     include: {
-  //       model: Notebook,
-  //       as: 'notebook',
-  //       attributes: ['name'],
-  //     },
-  //   })
-  //   res.json(notes)
-  // } catch (error) {
-  //   res.status(500).json({ message: error.message })
-  // }
 }
 
 //create
