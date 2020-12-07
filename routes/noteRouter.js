@@ -13,5 +13,5 @@ router.get('/notes', noteList)
 router.put('/notes/:noteId', noteUpdate)
 
 //delete
-router.delete('/notes/:noteId', noteDelete)
+router.delete('/notebooks/notes/:noteId', noteDelete)
 module.exports = router
