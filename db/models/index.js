@@ -52,4 +52,16 @@ db.Note.belongsTo(db.Notebook, {
   as: 'notebook',
   foreignKey: { fieldName: 'notebookId' },
 })
+
+db.Note.belongsToMany(db.Tag, {
+  through: 'NoteTag',
+  as: 'tags',
+  foreignKey: { fieldName: 'tagId' },
+})
+db.Tag.belongsToMany(db.Note, {
+  through: 'NoteTag',
+  as: 'notes',
+  foreignKey: { fieldName: 'noteId' },
+})
+
 module.exports = db

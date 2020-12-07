@@ -2,11 +2,9 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const db = require('./db/models')
-// const CRUDRouter = require('./routes/CRUDRouter')
-// const CRUDController = require('./controllers/Controller')
 const noteRouter = require('./routes/noteRouter')
 const notebookRouter = require('./routes/notebookRouter')
-// const { Notebook, Note } = require('./db/models')
+const tagRouter = require('./routes/tagRouter')
 const path = require('path')
 
 const app = express()
@@ -16,14 +14,13 @@ app.use(cors())
 app.use(bodyParser.json())
 
 //Routes
-// app.use('/notes', new CRUDRouter(new CRUDController(Note, 'notes')))
 app.use('/', noteRouter)
 app.use('/', notebookRouter)
-// app.use('/notebooks', new CRUDRouter(new CRUDController(Notebook, 'notebooks')))
+app.use('/', tagRouter)
 
 const run = async () => {
   try {
-    await db.sequelize.sync()
+    await db.sequelize.sync({ alter: true })
     console.log('Connection to the database successful!')
     await app.listen(8000, () => {
       console.log('The application is running on localhost:8000')
