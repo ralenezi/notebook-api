@@ -12,7 +12,6 @@ const app = express()
 //Middleware
 app.use(cors())
 app.use(bodyParser.json())
-
 //Routes
 app.use('/', noteRouter)
 app.use('/', notebookRouter)
